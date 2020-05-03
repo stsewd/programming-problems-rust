@@ -10,4 +10,5 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions-rs/cargo@v1
         with:
-          command: test
+          toolchain: clippy
+          command: clippy
