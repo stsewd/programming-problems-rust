@@ -3,7 +3,7 @@
 use std::cmp;
 use std::io::{self, BufRead};
 
-fn solve(max_times: i32, times: &[i32], clothes: &[i32]) -> i32 {
+fn solve(_max_times: i32, times: &[i32], clothes: &[i32]) -> i32 {
     let max_gap: i32 = times
         .iter()
         .zip(&times[1..])
@@ -16,9 +16,9 @@ fn main() {
     let mut iter = stdin.lock().lines().map(|x| x.unwrap());
 
     let line: String = iter.next().unwrap();
-    let numbers = line.split_whitespace().map(|x| x.parse::<i32>().unwrap());
+    let mut numbers = line.split_whitespace().map(|x| x.parse::<i32>().unwrap());
     // Skip n and m
-    let g = numbers.skip(2).next().unwrap();
+    let g = numbers.nth(3).unwrap();
 
     let line: String = iter.next().unwrap();
     let times: Vec<i32> = line
@@ -41,6 +41,6 @@ mod tests {
 
     #[test]
     fn test() {
-        assert_eq!(solve(2, &vec![3, 5, 8], &vec![4, 1, 3]), 2);
+        assert_eq!(solve(2, &[3, 5, 8], &[4, 1, 3]), 2);
     }
 }

@@ -3,7 +3,7 @@
 use std::io::{self, BufRead};
 
 fn solve(a: i32, b: i32, c: i32) -> i32 {
-    return (a..=b).filter(|n| n % c == 0).count() as i32;
+    (a..=b).filter(|n| n % c == 0).count() as i32
 }
 
 fn main() {

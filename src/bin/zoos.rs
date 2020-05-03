@@ -5,20 +5,14 @@ use std::io::{self, BufRead};
 fn solve(word: &str) -> bool {
     let z = word.chars().filter(|x| *x == 'z').count();
     let o = word.chars().count() - z;
-    return z * 2 == o;
+    z * 2 == o
 }
 
 fn main() {
     let stdin = io::stdin();
     let mut iter = stdin.lock().lines().map(|x| x.unwrap());
     let word = iter.next().unwrap();
-    println!(
-        "{}",
-        match solve(&word) {
-            true => "Yes",
-            false => "No",
-        }
-    );
+    println!("{}", if solve(&word) { "Yes" } else { "No" });
 }
 
 #[cfg(test)]

@@ -14,7 +14,7 @@ fn move_middle(a: i32, b: i32, x: i32) -> i32 {
         steps += 1;
     }
     steps += (middle - x).abs();
-    return steps;
+    steps
 }
 
 fn solve(a: i32, b: i32, c: i32) -> i32 {
@@ -23,13 +23,13 @@ fn solve(a: i32, b: i32, c: i32) -> i32 {
         // - a b c
         // - a c b
         // - b a c
-        return move_middle(a, c, b);
+        move_middle(a, c, b)
     } else {
         // cases:
         // - c b a
         // - c a b
         // - b c a
-        return move_middle(c, a, b);
+        move_middle(c, a, b)
     }
 }
 
