@@ -1,3 +1,5 @@
+// https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-output/practice-problems/algorithm/count-divisors/
+
 use std::io::{self, BufRead};
 
 fn solve(a: i32, b: i32, c: i32) -> i32 {
