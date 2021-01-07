@@ -5,7 +5,7 @@ use std::io::{self, BufRead};
 
 fn solve(string: &str) -> i32 {
     let mut n = 0;
-    let vocals: HashSet<char> = vec!['a', 'e', 'i', 'o', 'u'].into_iter().collect();
+    let vocals: HashSet<char> = ['a', 'e', 'i', 'o', 'u'].iter().cloned().collect();
     let chars: Vec<char> = string.chars().collect();
     for (i, c) in chars.iter().take(chars.len() - 1).enumerate() {
         let next_vocal = chars.get(i + 1).unwrap();
