@@ -18,9 +18,9 @@ fn main() {
     let n: u32 = iter.next().unwrap().parse().unwrap();
     for _ in 0..n {
         let line = iter.next().unwrap();
-        let mut line = line.split_whitespace();
-        let w: u32 = line.next().unwrap().parse().unwrap();
-        let h: u32 = line.next().unwrap().parse().unwrap();
+        let mut line = line.split_whitespace().map(|x| x.parse().unwrap());
+        let w: u32 = line.next().unwrap();
+        let h: u32 = line.next().unwrap();
         println!("{}", solve(l, w, h));
     }
 }
