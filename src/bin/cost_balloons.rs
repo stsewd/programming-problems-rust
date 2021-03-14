@@ -9,9 +9,9 @@ fn main() {
     let tests: i32 = iter.next().unwrap().parse().unwrap();
     for _ in 0..tests {
         let line = iter.next().unwrap();
-        let mut numbers = line.split_whitespace().map(|x| x.parse::<i32>().unwrap());
-        let green = numbers.next().unwrap();
-        let purple = numbers.next().unwrap();
+        let mut numbers = line.split_whitespace().map(|x| x.parse().unwrap());
+        let green: i32 = numbers.next().unwrap();
+        let purple: i32 = numbers.next().unwrap();
 
         let n_users: i32 = iter.next().unwrap().parse().unwrap();
         let mut a = 0;
