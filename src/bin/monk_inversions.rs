@@ -1,4 +1,4 @@
-// https://www.hackerearth.com/practice/codemonk/
+// https://www.hackerearth.com/problem/algorithm/monk-and-inversions-arrays-strings-e5aaa427/
 
 use std::io::{self, BufRead};
 
