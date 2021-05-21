@@ -4,11 +4,12 @@ use std::io::{self, BufRead};
 
 fn solve(l: u32, w: u32, h: u32) -> String {
     if w < l || h < l {
-        return "UPLOAD ANOTHER".to_owned();
+        "UPLOAD ANOTHER".to_owned()
     } else if w == h {
-        return "ACCEPTED".to_owned();
+        "ACCEPTED".to_owned()
+    } else {
+        "CROP IT".to_owned()
     }
-    "CROP IT".to_owned()
 }
 
 fn main() {

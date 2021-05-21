@@ -6,9 +6,9 @@ fn solve(array: &[u32]) -> u32 {
     let mut sorted: Vec<u32> = array.to_vec();
     sorted.sort_unstable();
     let n = sorted.len();
-    let mut min = sorted.get(0).unwrap() ^ sorted.get(1).unwrap();
+    let mut min = sorted[0] ^ sorted[1];
     for i in 0..n - 1 {
-        let (a, b) = (sorted.get(i).unwrap(), sorted.get(i + 1).unwrap());
+        let (a, b) = (sorted[i], sorted[i + 1]);
         let result = a ^ b;
         if result == 0 {
             return 0;

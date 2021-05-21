@@ -6,10 +6,10 @@ fn solve(array: &[Vec<i32>], n: u32) -> u32 {
     let mut count = 0;
     for i in 0..n {
         for j in 0..n {
-            let current = array.get(i as usize).unwrap().get(j as usize).unwrap();
+            let current = array[i as usize][j as usize];
             for x in i..n {
                 for y in j..n {
-                    let compare = array.get(x as usize).unwrap().get(y as usize).unwrap();
+                    let compare = array[x as usize][y as usize];
                     if current > compare {
                         count += 1;
                     }
