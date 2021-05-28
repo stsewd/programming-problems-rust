@@ -1,7 +1,7 @@
 [package]
 name = "problem-solving"
 version = "0.1.0"
-authors = ["Santos Gallegos <santos_g@outlook.com>"]
+authors = ["Santos Gallegos <stsewd@protonmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
