@@ -3,7 +3,7 @@
 use std::io::{self, BufRead};
 
 fn solve(word: &str) -> bool {
-    let z = word.chars().filter(|x| *x == 'z').count();
+    let z = word.chars().filter(|&x| x == 'z').count();
     let o = word.chars().count() - z;
     z * 2 == o
 }
