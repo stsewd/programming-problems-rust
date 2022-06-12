@@ -21,9 +21,9 @@ mod tests {
 
     #[test]
     fn test() {
-        assert_eq!(true, solve("zzzoooooo"));
-        assert_eq!(false, solve("zzzooooooo"));
-        assert_eq!(true, solve("zzzzoooooooo"));
-        assert_eq!(false, solve("zzzooooo"));
+        assert!(solve("zzzoooooo"));
+        assert!(!solve("zzzooooooo"));
+        assert!(solve("zzzzoooooooo"));
+        assert!(!solve("zzzooooo"));
     }
 }
