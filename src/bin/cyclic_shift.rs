@@ -24,39 +24,22 @@ fn compare(a: usize, b: usize, binary_number: &[u8]) -> Ordering {
 fn solve(k: usize, binary_number: &[u8]) -> usize {
     let len = binary_number.len();
     let mut max = 0;
+    let mut period = 0;
     for i in 1..len {
-        if compare(i, max, binary_number) == Ordering::Greater {
+        let result = compare(i, max, binary_number);
+        if result == Ordering::Greater {
             max = i;
-        }
-    }
-    let mut results: Vec<usize> = Vec::new();
-
-    for i in 0..len {
-        if compare(i, max, binary_number) == Ordering::Equal {
-            results.push(i);
+        } else if result == Ordering::Equal {
+            period = i - max;
+            break;
         }
     }
 
-    let first_element = results.remove(0);
-    let mut last: usize = first_element;
-    let mut total: usize = 0;
-    let mut steps = Vec::with_capacity(results.len() + 1);
-    for &index in results.iter() {
-        let r = index - last;
-        total += r;
-        steps.push(r);
-        last = index;
+    if period == 0 {
+        max + (k - 1) * len
+    } else {
+        max + (k - 1) * period
     }
-
-    let last_round = len - last + first_element;
-    total += last_round;
-    steps.push(last_round);
-
-    let k = k - 1;
-    total *= k / steps.len();
-
-    total += steps.iter().take(k % steps.len()).sum::<usize>();
-    total + first_element
 }
 
 pub fn main() {
