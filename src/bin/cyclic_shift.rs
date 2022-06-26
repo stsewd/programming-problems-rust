@@ -40,7 +40,7 @@ fn solve(k: usize, binary_number: &[u8]) -> usize {
     let first_element = results.remove(0);
     let mut last: usize = first_element;
     let mut total: usize = 0;
-    let mut steps = Vec::with_capacity(results.len());
+    let mut steps = Vec::with_capacity(results.len() + 1);
     for &index in results.iter() {
         let r = index - last;
         total += r;
