@@ -84,7 +84,7 @@ mod tests {
 
     #[test]
     fn test() {
-        // assert_eq!(solve(2, &[1, 0, 1, 0, 1]), 9);
+        assert_eq!(solve(2, &[1, 0, 1, 0, 1]), 9);
         assert_eq!(solve(2, &[0, 1, 0, 1, 0, 1]), 3);
     }
 }
