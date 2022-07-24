@@ -7,7 +7,7 @@ fn get_iter(start: usize, max: usize) -> impl Iterator<Item = usize> {
     (start..max).chain(0..start)
 }
 
-fn compare(a: usize, b: usize, binary_number: &[u8]) -> Ordering {
+fn compare(a: usize, b: usize, binary_number: &[char]) -> Ordering {
     let iter_a = get_iter(a, binary_number.len());
     let iter_b = get_iter(b, binary_number.len());
     for (ia, ib) in iter_a.zip(iter_b) {
@@ -21,12 +21,13 @@ fn compare(a: usize, b: usize, binary_number: &[u8]) -> Ordering {
     Ordering::Equal
 }
 
-fn solve(k: usize, binary_number: &[u8]) -> usize {
+fn solve(k: usize, binary_number: &str) -> usize {
+    let binary_number: Vec<char> = binary_number.chars().collect();
     let len = binary_number.len();
     let mut max = 0;
     let mut period = 0;
     for i in 1..len {
-        let result = compare(i, max, binary_number);
+        let result = compare(i, max, &binary_number);
         if result == Ordering::Greater {
             max = i;
         } else if result == Ordering::Equal {
@@ -51,12 +52,7 @@ pub fn main() {
         let line = iter.next().unwrap();
         let mut numbers = line.split_whitespace().map(|x| x.parse::<usize>().unwrap());
         let k = numbers.nth(1).unwrap();
-        let binary_number: Vec<u8> = iter
-            .next()
-            .unwrap()
-            .chars()
-            .map(|x| if x == '1' { 1 } else { 0 })
-            .collect();
+        let binary_number = iter.next().unwrap();
         println!("{}", solve(k, &binary_number));
     }
 }
@@ -67,7 +63,7 @@ mod tests {
 
     #[test]
     fn test() {
-        assert_eq!(solve(2, &[1, 0, 1, 0, 1]), 9);
-        assert_eq!(solve(2, &[0, 1, 0, 1, 0, 1]), 3);
+        assert_eq!(solve(2, "10101"), 9);
+        assert_eq!(solve(2, "010101"), 3);
     }
 }
