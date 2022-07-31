@@ -20,8 +20,7 @@ fn main() {
     for _ in 0..n {
         strings.push(iter.next().unwrap());
     }
-    let mut stdout = io::stdout();
-    solve(&strings, &mut stdout);
+    solve(&strings, &mut io::stdout());
 }
 
 #[cfg(test)]
