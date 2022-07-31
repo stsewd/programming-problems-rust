@@ -1,15 +1,14 @@
 // https://www.hackerearth.com/problem/algorithm/monk-and-nice-strings-3-e5800d05/
-use std::io::{self, BufRead};
+use std::io::{self, BufRead, Write};
 
-fn solve(strings: &[String]) {
+fn solve(strings: &[String], output: &mut impl Write) {
     for (i, string) in strings.iter().enumerate() {
-        let mut count = 0;
-        for prev_string in strings.iter().take(i) {
-            if prev_string < string {
-                count += 1;
-            }
-        }
-        println!("{}", count);
+        let count = strings
+            .iter()
+            .take(i)
+            .filter(|&prev_string| prev_string < string)
+            .count();
+        writeln!(output, "{}", count).unwrap();
     }
 }
 
@@ -21,5 +20,19 @@ fn main() {
     for _ in 0..n {
         strings.push(iter.next().unwrap());
     }
-    solve(&strings);
+    let mut stdout = io::stdout();
+    solve(&strings, &mut stdout);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_solve() {
+        let mut output = Vec::new();
+        let strings: Vec<String> = ["a", "c", "d", "b"].iter().map(|&x| x.to_owned()).collect();
+        solve(&strings, &mut output);
+        assert_eq!(&output, b"0\n1\n2\n1\n");
+    }
 }
