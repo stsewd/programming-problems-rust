@@ -8,8 +8,7 @@ fn getkey(n: usize, i: usize) -> usize {
     n % 100000
 }
 
-fn solve(array: &[usize], output: &mut impl Write) {
-    let mut array = array.to_vec();
+fn solve(array: &mut [usize], output: &mut impl Write) {
     let mut result = vec![0; array.len()];
     let max = array.iter().max().unwrap().to_string().len();
     let (a, b) = (max / 5, max % 5);
@@ -17,7 +16,7 @@ fn solve(array: &[usize], output: &mut impl Write) {
     for i in 1..=n {
         let mut counter: [usize; 100000] = [0; 100000];
         // Assign.
-        for &element in &array {
+        for &element in array.iter() {
             let k = getkey(element, i);
             counter[k] += 1;
         }
@@ -36,7 +35,10 @@ fn solve(array: &[usize], output: &mut impl Write) {
             write!(output, "{} ", element).unwrap();
         }
         writeln!(output).unwrap();
-        array = result.clone();
+        // Swap array.
+        for (j, &item) in result.iter().enumerate() {
+            array[j] = item;
+        }
     }
 }
 
@@ -44,11 +46,11 @@ pub fn main() {
     let stdin = io::stdin();
     let mut iter = stdin.lock().lines().map(|x| x.unwrap());
     let line = iter.nth(1).unwrap();
-    let array: Vec<usize> = line
+    let mut array: Vec<usize> = line
         .split_whitespace()
         .map(|x| x.parse().unwrap())
         .collect();
-    solve(&array, &mut io::stdout());
+    solve(&mut array, &mut io::stdout());
 }
 
 #[cfg(test)]
@@ -58,8 +60,8 @@ mod tests {
     #[test]
     fn test_solve() {
         let mut output = Vec::new();
-        let array: Vec<usize> = vec![213456789, 167890, 123456789];
-        solve(&array, &mut output);
+        let mut array: Vec<usize> = vec![213456789, 167890, 123456789];
+        solve(&mut array, &mut output);
         assert_eq!(
             &output,
             b"213456789 123456789 167890 \n167890 123456789 213456789 \n"
