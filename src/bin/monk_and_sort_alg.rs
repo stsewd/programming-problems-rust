@@ -12,7 +12,7 @@ fn solve(array: &mut [usize], output: &mut impl Write) {
     let mut result = vec![0; array.len()];
     let max = array.iter().max().unwrap().to_string().len();
     let (a, b) = (max / 5, max % 5);
-    let n = a + (if b != 0 { 1 } else { 0 });
+    let n = a + usize::from(b != 0);
     for i in 1..=n {
         let mut counter: [usize; 100000] = [0; 100000];
         // Assign.
